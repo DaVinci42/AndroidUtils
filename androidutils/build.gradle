@@ -38,6 +38,10 @@ dependencies {
     })
 }
 
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
 publish {
     userOrg = 'davinci42'
     groupId = 'com.davinci42'
