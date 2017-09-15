@@ -2,6 +2,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
+ext {
+    majorVersion = 0
+    minorVersion = 1
+    fixVersion = 0
+
+    versionCodeValue = majorVersion * 1000 + minorVersion * 1000 + fixVersion * 1000
+    versionNameValue = versionCodeValue.toString()
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
@@ -10,8 +19,8 @@ android {
 
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 4
-        versionName "0.0.4"
+        versionCode versionCodeValue
+        versionName versionNameValue
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -46,7 +55,8 @@ publish {
     userOrg = 'davinci42'
     groupId = 'com.davinci42'
     artifactId = 'android-utils'
-    publishVersion = '0.0.4'
+    publishVersion = versionNameValue
     desc = 'Useful Utils For Android Developers'
     website = 'https://github.com/DaVinci42/AndroidUtils'
 }
+
