@@ -4,11 +4,11 @@ apply plugin: 'com.novoda.bintray-release'
 
 ext {
     majorVersion = 0
-    minorVersion = 1
+    minorVersion = 2
     fixVersion = 0
 
     versionCodeValue = majorVersion * 1000 + minorVersion * 1000 + fixVersion * 1000
-    versionNameValue = versionCodeValue.toString()
+    versionNameValue = majorVersion + "." + minorVersion + "." + fixVersion
 }
 
 android {
@@ -16,7 +16,6 @@ android {
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-
         minSdkVersion 21
         targetSdkVersion 26
         versionCode versionCodeValue
@@ -37,14 +36,16 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.0.2'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }
 
 tasks.withType(Javadoc).all {
