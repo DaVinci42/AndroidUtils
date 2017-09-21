@@ -4,8 +4,8 @@ apply plugin: 'com.novoda.bintray-release'
 
 ext {
     majorVersion = 0
-    minorVersion = 2
-    fixVersion = 1
+    minorVersion = 4
+    fixVersion = 0
 
     versionCodeValue = majorVersion * 1000 + minorVersion * 1000 + fixVersion * 1000
     versionNameValue = majorVersion + "." + minorVersion + "." + fixVersion
