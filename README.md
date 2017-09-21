@@ -1,5 +1,5 @@
 ```groovy
-compile 'com.davinci42:android-utils:0.2.0'
+compile 'com.davinci42:android-utils:0.2.1'
 ```
 
 
@@ -22,6 +22,7 @@ compile 'com.davinci42:android-utils:0.2.0'
   `AnimationDrawable` , elegant way to show the color motion background on the Instagram login page
 
 * `CommandExecutor`
+
   Executing shell command on Android, using RxJava
 
   ```kotlin
@@ -31,6 +32,14 @@ compile 'com.davinci42:android-utils:0.2.0'
 
   This will show the output line by line as the text of a snackbar, which is why it requires activity as a paremeter, cause the snackbar attached to the contentView.
 
-  Or you could use `.withCustomObserver(observer: Observer<String>)` to implement your own way to display the result.
+  Full constructor:
+
+  ```kotlin
+  CommandExecutor(activity: Activity, command: String, customObserver: Observer<String>? = null, requireRoot: Boolean = false)
+  ```
+
+  You could implement your own `Observer<String>` to handle the output.
+
+  `requireRoot` is for geeks
 
 

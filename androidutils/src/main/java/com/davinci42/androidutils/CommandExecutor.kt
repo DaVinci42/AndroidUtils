@@ -15,13 +15,7 @@ import java.io.InputStreamReader
 /**
  * Created by DaVinci42 on 2017/9/20.
  */
-class CommandExecutor(private val activity: Activity, private val command: String, private val requireRoot: Boolean = false) {
-
-    private var customObserver: Observer<String>? = null
-
-    fun withCustomObserver(observer: Observer<String>) {
-        customObserver = observer
-    }
+class CommandExecutor(private val activity: Activity, private val command: String, private val customObserver: Observer<String>? = null, private val requireRoot: Boolean = false) {
 
     fun execute() {
 
