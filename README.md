@@ -1,5 +1,5 @@
 ```groovy
-compile 'com.davinci42:android-utils:0.2.1'
+compile 'com.davinci42:android-utils:0.4.1'
 ```
 
 
@@ -42,4 +42,6 @@ compile 'com.davinci42:android-utils:0.2.1'
 
   `requireRoot` is for geeks
 
+* `RoundImageView`
 
+* `DividerItemDecoration` for `RecyclerView`
