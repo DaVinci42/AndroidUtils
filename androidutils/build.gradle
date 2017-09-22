@@ -7,7 +7,7 @@ ext {
     minorVersion = 4
     fixVersion = 1
 
-    versionCodeValue = majorVersion * 1000 + minorVersion * 1000 + fixVersion * 1000
+    versionCodeValue = majorVersion * 1000 * 1000 + minorVersion * 1000 + fixVersion
     versionNameValue = majorVersion + "." + minorVersion + "." + fixVersion
 }
 
