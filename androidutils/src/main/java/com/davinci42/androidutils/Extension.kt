@@ -1,5 +1,6 @@
 package com.davinci42.androidutils
 
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.GradientDrawable
@@ -60,4 +61,28 @@ fun Window.screenShot(clipStatusBar: Boolean = true, clipNavigationBar: Boolean 
     var height = bitmap.height - top
     height = if (clipNavigationBar) height - navigationBarHeight else height
     return Bitmap.createBitmap(bitmap, 0, top, bitmap.width, height)
+}
+
+
+/**
+ * Int
+ */
+fun Int.dp(): Int {
+    return Math.round(this.toFloat().dp())
+}
+
+fun Int.px(): Int {
+    return Math.round(this.toFloat().px())
+}
+
+
+/**
+ * Float
+ */
+fun Float.dp(): Float {
+    return this / Resources.getSystem().displayMetrics.density
+}
+
+fun Float.px(): Float {
+    return this * Resources.getSystem().displayMetrics.density
 }
