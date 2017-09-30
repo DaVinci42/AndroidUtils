@@ -1,11 +1,14 @@
 package com.davinci42.androidutils
 
+import android.app.Activity
+import android.app.Fragment
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.GradientDrawable
+import android.util.Log
 import android.view.View
-import android.view.Window
 
 /**
  * Created by DaVinci42 on 2017/9/15.
@@ -38,17 +41,12 @@ fun View.toBitmap(): Bitmap {
     return bitmap
 }
 
+fun View.screenShot(clipStatusBar: Boolean = true, clipNavigationBar: Boolean = true): Bitmap {
 
-/**
- * Window
- */
-fun Window.screenShot(clipStatusBar: Boolean = true, clipNavigationBar: Boolean = true): Bitmap {
-    val view = this.decorView.rootView
-
-    view.isDrawingCacheEnabled = true
-    val cache = view.drawingCache
+    this.isDrawingCacheEnabled = true
+    val cache = this.drawingCache
     val bitmap = Bitmap.createBitmap(cache, 0, 0, cache.width, cache.height)
-    view.isDrawingCacheEnabled = false
+    this.isDrawingCacheEnabled = false
 
     val resources = this.context.resources
     val statusBarResId = resources.getIdentifier("status_bar_height", "dimen", "android")
@@ -85,4 +83,62 @@ fun Float.dp(): Float {
 
 fun Float.px(): Float {
     return this * Resources.getSystem().displayMetrics.density
+}
+
+
+/**
+ * Activity
+ */
+fun Activity.logd(msg: String) {
+    Log.d(this::class.java.simpleName, msg)
+}
+
+fun Activity.logi(msg: String) {
+    Log.i(this::class.java.simpleName, msg)
+}
+
+fun Activity.logw(msg: String) {
+    Log.w(this::class.java.simpleName, msg)
+}
+
+fun Activity.loge(msg: String, e: Error? = null) {
+    if (e != null) {
+        Log.e(this::class.java.simpleName, msg, e)
+    } else {
+        Log.e(this::class.java.simpleName, msg, e)
+    }
+}
+
+
+/**
+ * Fragment
+ */
+fun Fragment.logd(msg: String) {
+    activity.logd(msg)
+}
+
+fun Fragment.logi(msg: String) {
+    activity.logi(msg)
+}
+
+fun Fragment.logw(msg: String) {
+    activity.logw(msg)
+}
+
+fun Fragment.loge(msg: String, e: Error? = null) {
+    activity.loge(msg, e)
+}
+
+
+/**
+ * Context
+ */
+fun Context.statusBarHeight(): Int {
+    val statusBarResId = resources.getIdentifier("status_bar_height", "dimen", "android")
+    return if (statusBarResId > 0) resources.getDimensionPixelSize(statusBarResId) else 0
+}
+
+fun Context.navigationBarHeight(): Int {
+    val navigationBarResId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+    return if (navigationBarResId > 0) resources.getDimensionPixelSize(navigationBarResId) else 0
 }
