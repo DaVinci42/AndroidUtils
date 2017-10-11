@@ -36,7 +36,6 @@ class ScreenShotFragment : Fragment(), ImageReader.OnImageAvailableListener {
 
     private var observer: Observer<Bitmap>? = null
 
-
     companion object {
 
         fun takeScreenShot(activity: FragmentActivity, observer: Observer<Bitmap>) {
@@ -48,7 +47,6 @@ class ScreenShotFragment : Fragment(), ImageReader.OnImageAvailableListener {
 
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +65,6 @@ class ScreenShotFragment : Fragment(), ImageReader.OnImageAvailableListener {
 
         startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), REQUEST_MEDIA_PROJECTION)
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
@@ -93,8 +90,7 @@ class ScreenShotFragment : Fragment(), ImageReader.OnImageAvailableListener {
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
-
-
+    
     override fun onImageAvailable(reader: ImageReader?) {
 
         val image = mImageReader.acquireLatestImage()
