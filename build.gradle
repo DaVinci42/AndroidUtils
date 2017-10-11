@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta6'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta7'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath 'com.novoda:bintray-release:0.5.0'
@@ -28,10 +28,10 @@ task clean(type: Delete) {
 ext {
 
     compileSdkVersion =     26
-    buildToolsVersion =     "26.0.1"
     minSdkVersion =         21
     targetSdkVersion =      26
 
+    buildToolsVersion =     "26.0.2"
     supportLibVersion =     '26.1.0'
     junitVersion =          '4.12'
     espressoVersion =       '3.0.1'
