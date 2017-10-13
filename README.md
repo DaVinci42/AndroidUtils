@@ -1,5 +1,5 @@
 ```groovy
-compile 'com.davinci42:android-utils:0.7.0'
+compile 'com.davinci42:android-utils:0.7.1'
 ```
 
 

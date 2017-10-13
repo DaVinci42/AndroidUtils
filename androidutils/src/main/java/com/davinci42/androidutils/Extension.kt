@@ -41,47 +41,27 @@ fun View.toBitmap(): Bitmap {
     return bitmap
 }
 
-fun View.screenShot(clipStatusBar: Boolean = true, clipNavigationBar: Boolean = true): Bitmap {
-
-    this.isDrawingCacheEnabled = true
-    val cache = this.drawingCache
-    val bitmap = Bitmap.createBitmap(cache, 0, 0, cache.width, cache.height)
-    this.isDrawingCacheEnabled = false
-
-    val resources = this.context.resources
-    val statusBarResId = resources.getIdentifier("status_bar_height", "dimen", "android")
-    val statusBarHeight = if (statusBarResId > 0) resources.getDimensionPixelSize(statusBarResId) else 0
-
-    val navigationBarResId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
-    val navigationBarHeight = if (navigationBarResId > 0) resources.getDimensionPixelSize(navigationBarResId) else 0
-
-    val top = if (clipStatusBar) statusBarHeight else 0
-    var height = bitmap.height - top
-    height = if (clipNavigationBar) height - navigationBarHeight else height
-    return Bitmap.createBitmap(bitmap, 0, top, bitmap.width, height)
-}
-
 
 /**
  * Int
  */
-fun Int.dp(): Int {
-    return Math.round(this.toFloat().dp())
+fun Int.toDp(): Int {
+    return Math.round(this.toFloat().toDp())
 }
 
-fun Int.px(): Int {
-    return Math.round(this.toFloat().px())
+fun Int.toPx(): Int {
+    return Math.round(this.toFloat().toPx())
 }
 
 
 /**
  * Float
  */
-fun Float.dp(): Float {
+fun Float.toDp(): Float {
     return this / Resources.getSystem().displayMetrics.density
 }
 
-fun Float.px(): Float {
+fun Float.toPx(): Float {
     return this * Resources.getSystem().displayMetrics.density
 }
 
@@ -107,6 +87,29 @@ fun Activity.loge(msg: String, e: Error? = null) {
     } else {
         Log.e(this::class.java.simpleName, msg, e)
     }
+}
+
+fun Activity.screenShot(clipStatusBar: Boolean = true, clipNavigationBar: Boolean = true): Bitmap {
+
+    val decorView = this.window.decorView
+
+    decorView.isDrawingCacheEnabled = true
+    val cache = decorView.drawingCache
+    val bitmap = Bitmap.createBitmap(cache, 0, 0, cache.width, cache.height)
+    decorView.isDrawingCacheEnabled = false
+
+    val statusBarResId = resources.getIdentifier("status_bar_height", "dimen", "android")
+    val statusBarHeight = if (statusBarResId > 0) resources.getDimensionPixelSize(statusBarResId) else 0
+
+    val navigationBarResId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+    val navigationBarHeight = if (navigationBarResId > 0) resources.getDimensionPixelSize(navigationBarResId) else 0
+
+    val top = if (clipStatusBar) statusBarHeight else 0
+    var height = bitmap.height - top
+    if (clipNavigationBar) {
+        height -= navigationBarHeight
+    }
+    return Bitmap.createBitmap(bitmap, 0, top, bitmap.width, height)
 }
 
 
