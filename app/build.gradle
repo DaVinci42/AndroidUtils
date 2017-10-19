@@ -25,12 +25,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraintVersion}"
-    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
     androidTestImplementation("com.android.support.test.espresso:espresso-core:${rootProject.ext.espressoVersion}", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraintVersion}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation project(':androidutils')
 }
