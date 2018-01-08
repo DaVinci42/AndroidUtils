@@ -52,7 +52,7 @@ class ScreenShotFragment : Fragment(), ImageReader.OnImageAvailableListener {
         super.onCreate(savedInstanceState)
 
         val metrics = DisplayMetrics()
-        activity.windowManager.defaultDisplay.getRealMetrics(metrics)
+        activity?.windowManager?.defaultDisplay?.getRealMetrics(metrics)
 
         mScreenDensity = metrics.densityDpi
         mDisplayWidth = metrics.widthPixels
@@ -61,7 +61,7 @@ class ScreenShotFragment : Fragment(), ImageReader.OnImageAvailableListener {
         mImageReader = ImageReader.newInstance(mDisplayWidth, mDisplayHeight, PixelFormat.RGBA_8888, 1)
         mImageReader.setOnImageAvailableListener(this, null)
 
-        mMediaProjectionManager = activity.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+        mMediaProjectionManager = activity?.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
 
         startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), REQUEST_MEDIA_PROJECTION)
     }
@@ -90,7 +90,7 @@ class ScreenShotFragment : Fragment(), ImageReader.OnImageAvailableListener {
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
-    
+
     override fun onImageAvailable(reader: ImageReader?) {
 
         val image = mImageReader.acquireLatestImage()

@@ -3,9 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
 ext {
-    majorVersion =  0
-    minorVersion =  7
-    fixVersion =    1
+    majorVersion = 0
+    minorVersion = 8
+    fixVersion = 0
 
     versionCodeValue = majorVersion * 1000 * 1000 + minorVersion * 1000 + fixVersion
     versionNameValue = majorVersion + "." + minorVersion + "." + fixVersion
