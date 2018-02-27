@@ -3,6 +3,7 @@ package com.davinci42.androidutils
 import android.app.Activity
 import android.support.design.widget.Snackbar
 import android.view.View
+import android.widget.TextView
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.Observer
@@ -42,7 +43,8 @@ class CommandExecutor(private val activity: Activity, private val command: Strin
         private val stringBuilder = StringBuilder()
 
         override fun onSubscribe(d: Disposable) {
-
+            val textView = snackBar.view.findViewById<TextView>(android.support.design.R.id.snackbar_text)
+            textView.maxLines = Int.MAX_VALUE
         }
 
         override fun onNext(t: String) {
